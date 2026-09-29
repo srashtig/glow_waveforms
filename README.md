@@ -1,6 +1,6 @@
 # glow_waveforms
 
-Wave-optics lensed GW waveforms, with the amplification factor F(w) computed by [glow2](<GLOW2_GIT_URL>). One package serves **bilby / bilby_pipe** and **pycbc**, and both use the same lens code:
+Wave-optics lensed GW waveforms, with the amplification factor F(w) computed by [glow2](<https://github.com/hectorvrj/GLoW2_prerelease>). One package serves **bilby / bilby_pipe** and **pycbc**, and both use the same lens code:
 
 ```
 glow_waveforms/
