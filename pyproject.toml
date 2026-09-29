@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "glow_waveforms"
+version = "0.1.0"
+description = "Wave-optics lensed GW waveforms (glow2) for bilby, bilby_pipe and pycbc"
+authors = [{name = "Srashti Goyal", email = "srashti.official@gmail.com"}]
+requires-python = ">=3.9"
+dependencies = ["numpy", "glow2"]
+
+[project.optional-dependencies]
+bilby = ["bilby>=2.6"]
+pipe = ["bilby>=2.6", "bilby_pipe>=1.6"]
+pycbc = ["pycbc>=2.0"]
+all = ["bilby>=2.6", "bilby_pipe>=1.6", "pycbc>=2.0"]
+test = ["pytest"]
+
+# pycbc waveform plugins: approximants GLoW_<model> after pip install
+[project.entry-points."pycbc.waveform.fd"]
+GLoW_PL = "glow_waveforms.glow_pycbc.waveform:fd_PL"
+GLoW_SIS = "glow_waveforms.glow_pycbc.waveform:fd_SIS"
+GLoW_gSIS = "glow_waveforms.glow_pycbc.waveform:fd_gSIS"
+GLoW_NFW = "glow_waveforms.glow_pycbc.waveform:fd_NFW"
+GLoW_PLshear = "glow_waveforms.glow_pycbc.waveform:fd_PLshear"
+GLoW_PLshear_kpeqg1 = "glow_waveforms.glow_pycbc.waveform:fd_PLshear_kpeqg1"
+GLoW_gSISshear = "glow_waveforms.glow_pycbc.waveform:fd_gSISshear"
+
+[tool.setuptools]
+packages = ["glow_waveforms", "glow_waveforms.glow_bilby", "glow_waveforms.glow_bilby.bilby_pe",
+            "glow_waveforms.glow_bilby.bilby_pipe_pe", "glow_waveforms.glow_pycbc"]
+
+[tool.setuptools.package-data]
+"glow_waveforms.glow_bilby.bilby_pipe_pe" = ["template.ini", "*.ini", "prior_files/*.prior"]
